@@ -1,4 +1,4 @@
-# ⚠️ WARNING: This project is not intended for direct use ⚠️
+# ⚠️ This project is not intended for direct use ⚠️
 
 This project is provided for **reference** purposes only. Do not use it for **real projects** by forking or copying. This project is only a sample code for **learning purposes** or **technical experiments**, and is not recommended for use in real environments.
 
@@ -15,7 +15,7 @@ This project is provided for **reference** purposes only. Do not use it for **re
 
 ---
 
-# ⚠️ 경고: 이 프로젝트는 직접적인 사용을 위한 것이 아닙니다 ⚠️
+# ⚠️ 이 프로젝트는 직접적인 사용을 위한 것이 아닙니다 ⚠️
 
 이 프로젝트는 **참고용**으로만 제공됩니다. 포크(fork)나 복사(copy) 등의 방법으로 **실제 프로젝트**에 사용하지 마십시오. 이 프로젝트는 **학습 목적** 또는 **기술적인 실험**을 위한 샘플 코드일 뿐이며, 실제 환경에서의 사용을 권장하지 않습니다.
 
