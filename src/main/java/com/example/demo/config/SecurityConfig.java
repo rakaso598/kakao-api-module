@@ -20,7 +20,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/home").permitAll()  // 경로는 인증 없이 접근 허용
+                                .requestMatchers("/index").permitAll()  // 경로는 인증 없이 접근 허용
                                 .anyRequest().authenticated()  // 그 외 모든 요청은 인증 필요
                 )
                 .formLogin(withDefaults())  // 기본 로그인 폼 활성화

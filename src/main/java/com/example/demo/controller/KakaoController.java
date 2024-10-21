@@ -5,22 +5,28 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
 @Controller
 public class KakaoController {
+
+    /*
+        액세스 토큰을 안전하게 저장하고 관리하는 방안 필요 :88
+     */
+
+    @Autowired
+    private RestTemplate restTemplate;  // RestTemplate 주입
 
     @Value("${KAKAO_CLIENT_ID}")
     private String KAKAO_CLIENT_ID;
@@ -53,21 +59,33 @@ public class KakaoController {
         params.add("code", code);
 
         // RestTemplate으로 POST 요청
-        RestTemplate restTemplate = new RestTemplate();
+//        RestTemplate restTemplate = new RestTemplate(); // Bean 주입받았으므로 주석처리
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
 
         // 카카오로 액세스 토큰 요청
-        ResponseEntity<String> response = restTemplate.postForEntity(tokenUrl, request, String.class);
+        ResponseEntity<String> response = null;
+        try {
+            response = restTemplate.postForEntity(tokenUrl, request, String.class);
+            if (response.getStatusCode() != HttpStatus.OK) {
+                throw new RuntimeException("Failed to retrieve access token");
+            }
+        } catch (RestClientException e) {
+            // 에러 처리 로직
+            return "error";  // 에러 페이지로 리디렉션 또는 로그 기록
+        }
 
         // JSON 파싱 후 액세스 토큰 추출 (Jackson 라이브러리 사용)
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
-        String accessToken = jsonNode.get("access_token").asText();
+        String accessToken = jsonNode.get("access_token") != null ? jsonNode.get("access_token").asText() : null;
+        if (accessToken == null) {
+            throw new RuntimeException("Access token not found in response");
+        }
 
-        // 액세스 토큰을 활용한 로직 구현
+        // 액세스 토큰을 활용한 로직 구현 필요
         return "redirect:/home";
     }
 
