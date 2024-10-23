@@ -20,8 +20,8 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class KakaoLocalService {
 
-    @Value("${KAKAO_CLIENT_ID}")
-    private String KAKAO_CLIENT_ID;
+    @Value("${KakaoAKapiKey}")
+    private String KakaoAKapiKey;
 
     private final RestTemplate restTemplate;
 
@@ -33,7 +33,10 @@ public class KakaoLocalService {
     public String searchByKeyword(String query) {
         String url = "https://dapi.kakao.com/v2/local/search/keyword.json?query=" + encodeQuery(query);
 
-        String apiKey = "KakaoAK " + KAKAO_CLIENT_ID;
+        String apiKey = KakaoAKapiKey;
+
+        // 여기서 로그로 Authorization 헤더 값을 출력
+        log.info("Authorization 헤더에 들어가는 값: {}", apiKey);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", apiKey); // 헤더에 Authorization 추가
