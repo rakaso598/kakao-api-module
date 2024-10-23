@@ -21,6 +21,7 @@ public class HomeController {
         return "error";
     }
 
+    // 카카오 맵
     @GetMapping("/kakao-map")
     public String kakaoMap() {
         return "kakao-map";
