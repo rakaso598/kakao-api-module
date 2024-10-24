@@ -22,7 +22,7 @@ import java.io.IOException;
 public class KakaoController {
 
     /*
-        액세스 토큰을 안전하게 저장하고 관리하는 방안 필요 :88
+        액세스 토큰을 안전하게 저장하고 관리하는 방안 필요
      */
 
     @Autowired

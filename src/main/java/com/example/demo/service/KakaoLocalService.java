@@ -41,6 +41,9 @@ public class KakaoLocalService {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", apiKey); // 헤더에 Authorization 추가
 
+        log.info("Request URL: {}", url);
+        log.info("Request Headers: {}", headers);
+
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         try {
