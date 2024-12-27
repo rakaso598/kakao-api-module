@@ -1,4 +1,4 @@
-# ⚠️ This project is not intended for direct use
+# ⚠️ This project is not intended for direct use ⚠️
 
 This project is provided for **reference** purposes only. Do not use it for **real projects** by forking or copying. This project is only a sample code for **learning purposes** or **technical experiments**, and is not recommended for use in real environments.
 
