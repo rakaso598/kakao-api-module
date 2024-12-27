@@ -11,4 +11,4 @@ This project is provided for **reference** purposes only. Do not use it for **re
 
 4. **License issues**: Some codes or libraries may not be suitable for use in commercial projects.
 
-### 🔧 Users should learn or use this project as a reference. We are not responsible for any problems caused by application to real projects.
+### 🔧 We are not responsible for any problems caused by application to real projects.
